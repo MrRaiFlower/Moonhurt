@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-1920608836338684162
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NormalFootstep1_{-1920608836338684162}
+  m_AudioClip: {fileID: 8300000, guid: 389aa33312a4fdf42b73a1fc57f8c797, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1021318049012772646
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NormalFootstep3_{-1021318049012772646}
+  m_AudioClip: {fileID: 8300000, guid: 3847dd33767ca7a43a65ab3dbb7d9d7b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4053807790403150379
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NormalFootstep2_{4053807790403150379}
+  m_AudioClip: {fileID: 8300000, guid: 24528e7c9a274c749ad6b739a38e694c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NormalFootsteps
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -1920608836338684162}
+  - {fileID: 4053807790403150379}
+  - {fileID: -1021318049012772646}
+  - {fileID: 7497348276697784623}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7497348276697784623
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NormalFootstep4_{7497348276697784623}
+  m_AudioClip: {fileID: 8300000, guid: c3364763ed2a6ae4ead13f1f289111bf, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

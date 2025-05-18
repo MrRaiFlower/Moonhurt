@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-5264214828890631421
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing6_{-5264214828890631421}
+  m_AudioClip: {fileID: 8300000, guid: d53ded8677bdbcc468ae2cd37ffac0d4, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2051597019410897438
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing2_{-2051597019410897438}
+  m_AudioClip: {fileID: 8300000, guid: 596049b98a1f714438b79a32ac762e35, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2626222637339276029
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing4_{2626222637339276029}
+  m_AudioClip: {fileID: 8300000, guid: b317d6630131a954ab5913c33b57dec7, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3261447258756914970
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing1_{3261447258756914970}
+  m_AudioClip: {fileID: 8300000, guid: 9ae49ac1e85c0f14a88aa40ddc056b06, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4146038271140409589
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing5_{4146038271140409589}
+  m_AudioClip: {fileID: 8300000, guid: 201cb1c660f565d4ebda749976f39962, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4996296755403876419
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing3_{4996296755403876419}
+  m_AudioClip: {fileID: 8300000, guid: 40724054461f2b44887f373259c090de, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5586540204608103498
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: heavyBreathing7_{5586540204608103498}
+  m_AudioClip: {fileID: 8300000, guid: cff8332b1a9e2044d9006bffe2c68f15, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HeavyBreathing
+  m_Volume: -10
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 3261447258756914970}
+  - {fileID: -2051597019410897438}
+  - {fileID: 4996296755403876419}
+  - {fileID: 2626222637339276029}
+  - {fileID: 4146038271140409589}
+  - {fileID: -5264214828890631421}
+  - {fileID: 5586540204608103498}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0

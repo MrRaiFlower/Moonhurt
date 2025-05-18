@@ -3,45 +3,77 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Gameobject References")]
     public GameObject player;
     public GameObject[] wanderingPoints;
 
+    [Header("Component References")]
+    public Transform myTransform;
+    public NavMeshAgent myNavMeshAgent;
+
+    [Header("Raycast")]
+    public string playerMaskName;
+
+    [Header("Nav Mesh Agent Parameters")]
     public float startSpeed;
+    public float angularSpeed;
+    public float acceleration;
+
+    [Header("Movement Speed")]
     public float wanderingSpeed;
     public float walkingSpeed;
     public float runningSpeed;
     public float stateChangeAcceleration;
-    public float angularSpeed;
-    public float acceleration;
-    public string playerMaskName;
+    
+    [Header("Vision")]
     public float fOV;
     public float visionRange;
     public int verticalRays;
     public int horizontalRays;
+
+    [Header("Player Hearing")]
+    public float walkSoundRange;
+    public float sprintSoundRange;
+    public float crouchSoundRange;
+    public float runDistance;
+    public float jumpSoundRange;
+    public float landingSoundRange;
+
+    [Header("Logic")]
     public float catchDistance;
-    public float runningCooldown;
-    public float valueCuttingTreshhold;
+    public float runningMemoryTime;
 
-    [HideInInspector] public string state;
+    [Header("Misc")]
+    public float valueCuttingTreshold;
 
+    // State
+    private string state;
+
+    // Vision
     private Vector3 playerDirection;
     private RaycastHit raycastHitInfo;
-
-    private float speed;
     private bool seesPlayer;
     private float playerDirectionAngle;
+    
+    // Velocity
+    private float speed;
+
+    // Player Hearing
+    private float distanceToPlayer;
+    
 
     void Start()
     {
         // Setup
-        this.gameObject.GetComponent<NavMeshAgent>().speed = startSpeed;
-        this.gameObject.GetComponent<NavMeshAgent>().angularSpeed = angularSpeed;
-        this.gameObject.GetComponent<NavMeshAgent>().acceleration = acceleration;
+
+        myNavMeshAgent.speed = startSpeed;
+        myNavMeshAgent.angularSpeed = angularSpeed;
+        myNavMeshAgent.acceleration = acceleration;
 
         state = "Wandering";
         speed = wanderingSpeed;
 
-        this.gameObject.GetComponent<NavMeshAgent>().SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
+        myNavMeshAgent.SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
     }
 
     void Update()
@@ -56,53 +88,53 @@ public class Enemy : MonoBehaviour
 
         if (playerDirectionAngle <= (fOV / 2))
         {
-            for (float dv = 0.5f * (player.GetComponent<CapsuleCollider>().height / player.GetComponent<PlayerControl>().normalHeight); dv >= -1.5f * (player.GetComponent<CapsuleCollider>().height / player.GetComponent<PlayerControl>().normalHeight); dv -= 2f / (float)(verticalRays - 1))
+            for (float dv = 0.5f * (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight); dv >= -1.5f * (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight); dv -= 2f / (float)(verticalRays - 1))
             {
                 for (float dh = -0.5f; dh <= 0.5f; dh +=1f / (float)(horizontalRays - 1))
                 {
-                    if (Physics.Raycast(this.gameObject.transform.position + (Vector3.up * 1.5f), playerDirection + new Vector3(dh, dv - ((2f - (player.GetComponent<CapsuleCollider>().height / player.GetComponent<PlayerControl>().normalHeight * 2f)) / 2f), dh), out raycastHitInfo, visionRange))
+                    if (Physics.Raycast(this.gameObject.transform.position + (Vector3.up * 1.5f), playerDirection + new Vector3(dh, dv - ((2f - (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh), out raycastHitInfo, visionRange))
                     {
                         seesPlayer = raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(playerMaskName);
 
-                        // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (player.GetComponent<CapsuleCollider>().height / player.GetComponent<PlayerControl>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
+                        // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (layer.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
 
                         if (seesPlayer)
                         {
-                            // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (player.GetComponent<CapsuleCollider>().height / player.GetComponent<PlayerControl>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
+                            // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (layer.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
                             
-                            // goto skipLaterRaycast;
+                            goto skipLaterRaycast;
                         }
                     }
                 }
             }
         }
         
-        // skipLaterRaycast:
+        skipLaterRaycast:
 
         // State Control
 
         if (seesPlayer)
         {
             state = "Running";
-            this.gameObject.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
+            myNavMeshAgent.SetDestination(player.transform.position);
         }
 
         if (state == "Running" && !seesPlayer)
         {
-            Invoke(nameof(ResetRunning), runningCooldown);
+            Invoke(nameof(ResetRunning), runningMemoryTime);
         }
 
         // Destination Control
 
-        if (state == "Wandering" && this.gameObject.GetComponent<NavMeshAgent>().remainingDistance <= catchDistance)
+        if (state == "Wandering" && myNavMeshAgent.remainingDistance <= catchDistance)
         {
-            this.gameObject.GetComponent<NavMeshAgent>().SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
+            myNavMeshAgent.SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
         }
 
-        if ((state == "Walking" || state == "Running") && this.gameObject.GetComponent<NavMeshAgent>().remainingDistance <= catchDistance)
+        if ((state == "Walking" || state == "Running") && myNavMeshAgent.remainingDistance <= catchDistance)
         {
             state = "Wandering";
-            this.gameObject.GetComponent<NavMeshAgent>().SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
+            myNavMeshAgent.SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
         }
 
         // Speed Control
@@ -111,7 +143,7 @@ public class Enemy : MonoBehaviour
         {
             speed = Mathf.Lerp(speed, wanderingSpeed, Time.deltaTime * stateChangeAcceleration);
 
-            if (speed < wanderingSpeed + valueCuttingTreshhold)
+            if (speed < wanderingSpeed + valueCuttingTreshold)
             {
                 speed = wanderingSpeed;
             }
@@ -120,7 +152,7 @@ public class Enemy : MonoBehaviour
         {
             speed = Mathf.Lerp(speed, walkingSpeed, Time.deltaTime * stateChangeAcceleration);
 
-            if (speed < walkingSpeed + valueCuttingTreshhold && speed > walkingSpeed - valueCuttingTreshhold)
+            if (speed < walkingSpeed + valueCuttingTreshold && speed > walkingSpeed - valueCuttingTreshold)
             {
                 speed = walkingSpeed;
             }
@@ -129,13 +161,84 @@ public class Enemy : MonoBehaviour
         {
             speed = Mathf.Lerp(speed, runningSpeed, Time.deltaTime * stateChangeAcceleration);
 
-            if (speed > runningSpeed - valueCuttingTreshhold)
+            if (speed > runningSpeed - valueCuttingTreshold)
             {
                 speed = runningSpeed;
             }
         }
 
-        this.gameObject.GetComponent<NavMeshAgent>().speed = speed;
+        myNavMeshAgent.speed = speed;
+
+        // Player Hearing
+
+        distanceToPlayer = (myTransform.position - player.transform.position).magnitude;
+
+        switch (player.GetComponent<Player>().state)
+        {
+            case "Crouching":
+            
+                if (distanceToPlayer <= crouchSoundRange)
+                {
+                    myNavMeshAgent.SetDestination(player.transform.position);
+
+                    if (state != "Running")
+                    {
+                        state = "Walking";
+                    }
+                }
+                break;
+
+            case "Sprinting":
+
+                if (distanceToPlayer <= sprintSoundRange)
+                {
+                    myNavMeshAgent.SetDestination(player.transform.position);
+
+                    if (state != "Running")
+                    {
+                        state = "Walking";
+                    }
+                }
+                break;
+
+            case "Walking":
+
+                if (distanceToPlayer <= walkSoundRange)
+                {
+                    myNavMeshAgent.SetDestination(player.transform.position);
+
+                    if (state != "Running")
+                    {
+                        state = "Walking";
+                    }
+                }
+                break;
+        }
+
+        if (player.GetComponent<Player>().hasJumped && distanceToPlayer <= jumpSoundRange)
+        {
+            myNavMeshAgent.SetDestination(player.transform.position);
+
+            if (state != "Running")
+            {
+                state = "Walking";
+            }
+        }
+
+        if (player.GetComponent<Player>().hasLanded && distanceToPlayer <= landingSoundRange)
+        {
+            myNavMeshAgent.SetDestination(player.transform.position);
+
+            if (state != "Running")
+            {
+                state = "Walking";
+            }
+        }
+        
+        if (distanceToPlayer <= runDistance && state == "Walking")
+        {
+            state = "Running";
+        }
     }
 
     private void ResetRunning()
