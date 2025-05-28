@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-9034541293311500745
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh5_{-9034541293311500745}
+  m_AudioClip: {fileID: 8300000, guid: 46dde5e882d20a041bb87513430a1f53, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3080332713512058501
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh7_{-3080332713512058501}
+  m_AudioClip: {fileID: 8300000, guid: 2a232b945aae6944dba070a338f105eb, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2821911944589928462
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh1_{-2821911944589928462}
+  m_AudioClip: {fileID: 8300000, guid: 90e9cf97d616e7644a220ae2ca57145e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1790423663886745314
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh4_{-1790423663886745314}
+  m_AudioClip: {fileID: 8300000, guid: a7aadbb1724872a4caf629af312c49af, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &537022384282839263
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh3_{537022384282839263}
+  m_AudioClip: {fileID: 8300000, guid: 27e6215b499df1e40a36f9bf19308f17, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &710072292985956792
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh6_{710072292985956792}
+  m_AudioClip: {fileID: 8300000, guid: e8d187373865cc445b1ca14aaa6c8987, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2814477144754135362
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: dogBarks_{2814477144754135362}
+  m_AudioClip: {fileID: 8300000, guid: 35d5b215c0e8aa4489a08d203082b803, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RandomAmbienceSounds
+  m_Volume: -60
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 2814477144754135362}
+  - {fileID: -2821911944589928462}
+  - {fileID: 8502063562324592743}
+  - {fileID: 537022384282839263}
+  - {fileID: -1790423663886745314}
+  - {fileID: -9034541293311500745}
+  - {fileID: 710072292985956792}
+  - {fileID: -3080332713512058501}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8502063562324592743
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: laugh2_{8502063562324592743}
+  m_AudioClip: {fileID: 8300000, guid: 1e4072d23270f094a85dcba4ce0dfe89, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

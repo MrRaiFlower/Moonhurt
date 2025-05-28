@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6416217282305959037
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector2_{-6416217282305959037}
+  m_AudioClip: {fileID: 8300000, guid: de3a69ae3a28ea44dad082bdecf618f1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-6361495540734367244
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector14_{-6361495540734367244}
+  m_AudioClip: {fileID: 8300000, guid: f173254d4b674714aa18183eb1cbde04, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5671381514830485014
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector9_{-5671381514830485014}
+  m_AudioClip: {fileID: 8300000, guid: fab0e46c82eaa92448cbf9442895b32c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5377012855950990093
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector7_{-5377012855950990093}
+  m_AudioClip: {fileID: 8300000, guid: c358e07448c53f1439399890ec540ba8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-4851786998663382694
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector15_{-4851786998663382694}
+  m_AudioClip: {fileID: 8300000, guid: d13bf3b510e17dc47996543e8689559c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-4538972836265631144
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector13_{-4538972836265631144}
+  m_AudioClip: {fileID: 8300000, guid: 21c90816f9e1b9144ad74b8d5fa3302a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3169187207321321603
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector3_{-3169187207321321603}
+  m_AudioClip: {fileID: 8300000, guid: ddc681ab5feaab94e95126c2c4c2ab69, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-50052063574923862
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector6_{-50052063574923862}
+  m_AudioClip: {fileID: 8300000, guid: ecb3bb17bd0af6f4dbbe97534039f420, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1374293061212079392
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector4_{1374293061212079392}
+  m_AudioClip: {fileID: 8300000, guid: f87b9b2e58ab5b84ba3358ce4e231d7a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2156939811459477239
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector1_{2156939811459477239}
+  m_AudioClip: {fileID: 8300000, guid: 931989ae16ee172458e9d96ea6998b86, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2610598218042159886
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector11_{2610598218042159886}
+  m_AudioClip: {fileID: 8300000, guid: 01f327102c123974a9a1ecec5d7eb5d8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3669516119178337090
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector10_{3669516119178337090}
+  m_AudioClip: {fileID: 8300000, guid: 17b2056927ba0304e81b034661274c5d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4423726303024210863
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector5_{4423726303024210863}
+  m_AudioClip: {fileID: 8300000, guid: 1e0431aa90279674c9858988219afee3, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5553252457802914658
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector8_{5553252457802914658}
+  m_AudioClip: {fileID: 8300000, guid: 4071baf94619cd94f9b75190350f1196, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 2156939811459477239}
+  - {fileID: -6416217282305959037}
+  - {fileID: -3169187207321321603}
+  - {fileID: 1374293061212079392}
+  - {fileID: 4423726303024210863}
+  - {fileID: -50052063574923862}
+  - {fileID: -5377012855950990093}
+  - {fileID: 5553252457802914658}
+  - {fileID: -5671381514830485014}
+  - {fileID: 3669516119178337090}
+  - {fileID: 2610598218042159886}
+  - {fileID: 7941407409752021311}
+  - {fileID: -4538972836265631144}
+  - {fileID: -6361495540734367244}
+  - {fileID: -4851786998663382694}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7941407409752021311
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GiantHollowTubeSector12_{7941407409752021311}
+  m_AudioClip: {fileID: 8300000, guid: 356f7959115ded84bb83deae2edb6801, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

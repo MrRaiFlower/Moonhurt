@@ -1,7 +1,6 @@
 using System;
-using Unity.VisualScripting;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -17,18 +16,23 @@ public class Player : MonoBehaviour
     public CapsuleCollider myCapsuleCollider;
 
     [Header("Audio Sources")]
-
     public AudioSource normalFootstepsSound;
     public AudioSource lightFootstepsSound;
     public AudioSource heavyFootstepsSound;
     public AudioSource jumpSound;
-    public AudioSource landingSound;
+    public AudioSource groundingSound;
+    public AudioSource ceilingTouchSound;
     public AudioSource heavyBreathingSound;
     public AudioSource flashlightTurnOnSound;
     public AudioSource flashlightTurnOffSound;
 
     [Header("Raycast")]
     public string groundLayerName;
+    public float groundCheckRadius;
+    public int groundCheckRays;
+    public string ceilingLayerName;
+    public float ceilingCheckRadius;
+    public int ceilingCheckRays;
 
     [Header("Camera")]
     public float mouseSensitivity;
@@ -77,10 +81,16 @@ public class Player : MonoBehaviour
     private Vector3 moveDirection;
     [HideInInspector] public bool isMoving;
 
-    // Ground Check
+    // Raycast
     private RaycastHit raycastHitInfo;
+
+    // Ground and Ceiling Check
     [HideInInspector] public bool isGrounded;
     private bool wasGrounded;
+    [HideInInspector] public bool hasGrounded;
+    [HideInInspector] public bool touchesCeiling;
+    private bool touchedCeiling;
+    [HideInInspector] public bool hasTouchedCeiling;
 
     // State
     [HideInInspector] public string state;
@@ -92,14 +102,13 @@ public class Player : MonoBehaviour
     // Jump
     private bool canJump;
     [HideInInspector] public bool hasJumped;
-    [HideInInspector] public bool hasLanded;
 
     // Flashlight
     private bool flashlightIsOn;
     private bool canUseFlashlight;
 
     // Crouching
-    private float lerpedHeightScale;
+    private float lerpedHeightValue;
 
     // Camera Rotation
     private float cursorMovementX;
@@ -125,6 +134,7 @@ public class Player : MonoBehaviour
     private InputAction sprintAction;
     private InputAction crouchAction;
     private InputAction lookAction;
+    private InputAction interactAction;
     private InputAction flashlightAction;
 
     void Start()
@@ -134,13 +144,13 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        myCharacterController.height = normalHeight;
+        myCharacterController.center = Vector3.up * (normalHeight / 2f);
+
         myCapsuleCollider.height = normalHeight;
-        myCapsuleCollider.center = Vector3.up * normalHeight / 2f;
+        myCapsuleCollider.center = Vector3.up * (normalHeight / 2f);
 
-        myCharacterController.height = crouchHeight;
-        myCharacterController.center = Vector3.up * crouchHeight / 2f;
-
-        myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCapsuleCollider.height);
+        myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCharacterController.height) + new Vector3(myCameraGameObject.transform.localPosition.x, 0f, myCameraGameObject.transform.localPosition.z);
 
         normalFootstepsReadyToPlay = true;
         lightFootstepsReadyToPlay = true;
@@ -161,7 +171,9 @@ public class Player : MonoBehaviour
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
+        interactAction = InputSystem.actions.FindAction("Interact");
         flashlightAction = InputSystem.actions.FindAction("Flashlight");
+        
     }
 
     void Update()
@@ -205,16 +217,16 @@ public class Player : MonoBehaviour
 
         // Move Direction Inputs
 
-            inputMoveDirection = moveAction.ReadValue<Vector2>();
+        inputMoveDirection = moveAction.ReadValue<Vector2>();
 
-        isMoving = inputMoveDirection.sqrMagnitude != 0;
+        isMoving = inputMoveDirection.magnitude != 0;
 
         if (isMoving)
         {
             moveDirection = this.gameObject.transform.right * inputMoveDirection.x + this.gameObject.transform.forward * inputMoveDirection.y;
         }
 
-        if (moveDirection.sqrMagnitude > 1)
+        if (moveDirection.magnitude > 1)
         {
             moveDirection.Normalize();
         }
@@ -225,16 +237,68 @@ public class Player : MonoBehaviour
 
         isGrounded = false;
 
-        if (Physics.Raycast(this.gameObject.transform.position, Vector3.down, out raycastHitInfo, 0.1f))
+        for (float dz = -1f * groundCheckRadius; dz <= groundCheckRadius; dz += (2f * groundCheckRadius) / (float)(groundCheckRays - 1))
         {
-            isGrounded = raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(groundLayerName);
+            for (float dx = -1f * groundCheckRadius; dx <= groundCheckRadius; dx += (2f * groundCheckRadius) / (float)(groundCheckRays - 1))
+            {
+                if (new Vector2(dx, dz).magnitude <= groundCheckRadius)
+                {
+                    // Debug.DrawRay(this.gameObject.transform.position + new Vector3(dx, -1f * Mathf.Sqrt(0.25f - Mathf.Pow(new Vector2(dx, dz).magnitude, 2)) + 0.5f, dz), Vector3.down * 0.1f, Color.green);
+
+                    if (Physics.Raycast(this.gameObject.transform.position + new Vector3(dx, -1f * Mathf.Sqrt(0.25f - Mathf.Pow(new Vector2(dx, dz).magnitude, 2)) + 0.5f, dz), Vector3.down, out raycastHitInfo, 0.1f))
+                    {
+                        if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(groundLayerName))
+                        {
+                            isGrounded = true;
+                            // goto skipLaterGroundCheck;
+                        }
+                    }
+                }
+            }
         }
 
-        hasLanded = false;
+        // skipLaterGroundCheck:
+
+        hasGrounded = false;
 
         if (!wasGrounded && isGrounded)
         {
-            hasLanded = true;
+            hasGrounded = true;
+        }
+
+        // Ceiling Check
+
+        touchedCeiling = touchesCeiling;
+
+        touchesCeiling = false;
+
+        for (float dz = -1 * ceilingCheckRadius; dz <= ceilingCheckRadius; dz += (2f * ceilingCheckRadius) / (float)(groundCheckRays - 1))
+        {
+            for (float dx = -1 * ceilingCheckRadius; dx <= ceilingCheckRadius; dx += (2f * ceilingCheckRadius) / (float)(groundCheckRays - 1))
+            {
+                if (new Vector2(dx, dz).magnitude <= ceilingCheckRadius)
+                {
+                    // Debug.DrawRay(this.gameObject.transform.position + new Vector3(dx, Mathf.Sqrt(0.25f - Mathf.Pow(new Vector2(dx, dz).magnitude, 2)) - 0.5f + myCharacterController.height, dz), Vector3.up * 0.1f, Color.green);
+
+                    if (Physics.Raycast(this.gameObject.transform.position + new Vector3(dx, Mathf.Sqrt(0.25f - Mathf.Pow(new Vector2(dx, dz).magnitude, 2)) - 0.5f + myCharacterController.height, dz), Vector3.up, out raycastHitInfo, 0.1f))
+                    {
+                        if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(ceilingLayerName))
+                        {
+                            touchesCeiling = true;
+                            goto skipLaterCeilingCheck;
+                        }
+                    }
+                }
+            }
+        }
+
+    skipLaterCeilingCheck:
+
+        hasTouchedCeiling = false;
+
+        if (!touchedCeiling && touchesCeiling)
+        {
+            hasTouchedCeiling = true;
         }
 
         // State Control
@@ -385,6 +449,10 @@ public class Player : MonoBehaviour
         {
             verticalVelocity = -1.69f;
         }
+        else if (hasTouchedCeiling)
+        {
+            verticalVelocity = -9.81f * Time.deltaTime;
+        }
         else
         {
             verticalVelocity += -9.81f * Time.deltaTime;
@@ -406,36 +474,48 @@ public class Player : MonoBehaviour
 
         // Height Control
 
-        if (state == "Crouching" && myCapsuleCollider.height != crouchHeight)
+        if (crouchAction.IsPressed() && myCharacterController.height != crouchHeight)
         {
-            lerpedHeightScale = Mathf.Lerp(myCapsuleCollider.height, crouchHeight, Time.deltaTime * heightChangeSpeed);
+            lerpedHeightValue = Mathf.Lerp(myCharacterController.height, crouchHeight, Time.deltaTime * heightChangeSpeed);
 
-            myCapsuleCollider.height = lerpedHeightScale;
-            myCapsuleCollider.center = Vector3.up * lerpedHeightScale;
+            myCharacterController.height = lerpedHeightValue;
+            myCharacterController.center = Vector3.up * (myCharacterController.height / 2f);
 
-            if (myCapsuleCollider.height < crouchHeight + valueCuttingTreshold)
+            myCapsuleCollider.height = lerpedHeightValue;
+            myCapsuleCollider.center = Vector3.up * (myCapsuleCollider.height / 2f);
+
+            if (myCharacterController.height < crouchHeight + valueCuttingTreshold)
             {
-                myCapsuleCollider.center = Vector3.up * crouchHeight / 2f;
+                myCharacterController.height = crouchHeight;
+                myCharacterController.center = Vector3.up * (myCharacterController.height / 2f);
+
                 myCapsuleCollider.height = crouchHeight;
+                myCapsuleCollider.center = Vector3.up * (myCapsuleCollider.height / 2f);
             }
 
-            myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCapsuleCollider.height);
+            myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCharacterController.height) + new Vector3(myCameraGameObject.transform.localPosition.x, 0f, myCameraGameObject.transform.localPosition.z);
         }
 
-        if (state != "Crouching" && myCapsuleCollider.height != normalHeight)
+        if (!crouchAction.IsPressed() && myCharacterController.height != normalHeight)
         {
-            lerpedHeightScale = Mathf.Lerp(myCapsuleCollider.height, normalHeight, Time.deltaTime * heightChangeSpeed);
+            lerpedHeightValue = Mathf.Lerp(myCharacterController.height, normalHeight, Time.deltaTime * heightChangeSpeed);
 
-            myCapsuleCollider.height = lerpedHeightScale;
-            myCapsuleCollider.center = Vector3.up * lerpedHeightScale;
+            myCharacterController.height = lerpedHeightValue;
+            myCharacterController.center = Vector3.up * (myCharacterController.height / 2f);
 
-            if (myCapsuleCollider.height > normalHeight - valueCuttingTreshold)
+            myCapsuleCollider.height = lerpedHeightValue;
+            myCapsuleCollider.center = Vector3.up * (myCapsuleCollider.height / 2f);
+
+            if (myCharacterController.height > normalHeight - valueCuttingTreshold)
             {
-                myCapsuleCollider.center = Vector3.up * normalHeight / 2f;
+                myCharacterController.height = normalHeight;
+                myCharacterController.center = Vector3.up * (myCharacterController.height / 2f);
+
                 myCapsuleCollider.height = normalHeight;
+                myCapsuleCollider.center = Vector3.up * (myCapsuleCollider.height / 2f);
             }
 
-            myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCapsuleCollider.height);
+            myCameraGameObject.transform.localPosition = Vector3.up * (cameraPositionY * myCharacterController.height) + new Vector3(myCameraGameObject.transform.localPosition.x, 0f, myCameraGameObject.transform.localPosition.z);
         }
 
         // Move
@@ -444,7 +524,7 @@ public class Player : MonoBehaviour
 
         // Sound and Animation
 
-        if (hasLanded)
+        if (hasGrounded)
         {
             normalFootstepsReadyToPlay = false;
             lightFootstepsReadyToPlay = false;
@@ -481,7 +561,6 @@ public class Player : MonoBehaviour
                 heavyBreathingReadyToPlay = false;
 
                 heavyBreathingSound.Play();
-
                 myCameraCamera.GetComponent<Animator>().Play("HeavyBreath");
 
                 Invoke(nameof(HeavyBreathingCooldown), heavyBreathingCooldown);
@@ -489,46 +568,46 @@ public class Player : MonoBehaviour
         }
 
         else switch (state)
-        {
-            case "Crouching":
+            {
+                case "Crouching":
 
-                if (lightFootstepsReadyToPlay)
-                {
-                    lightFootstepsReadyToPlay = false;
+                    if (lightFootstepsReadyToPlay)
+                    {
+                        lightFootstepsReadyToPlay = false;
 
-                    lightFootstepsSound.Play();
-                    myCameraCamera.GetComponent<Animator>().Play("LightStep");
+                        lightFootstepsSound.Play();
+                        myCameraCamera.GetComponent<Animator>().Play("LightStep");
 
-                    Invoke(nameof(LightFootstepCooldown), lightFootstepsCooldown);
-                }
-                break;
+                        Invoke(nameof(LightFootstepCooldown), lightFootstepsCooldown);
+                    }
+                    break;
 
-            case "Sprinting":
+                case "Sprinting":
 
-                if (heavyFootstepsReadyToPlay)
-                {
-                    heavyFootstepsReadyToPlay = false;
+                    if (heavyFootstepsReadyToPlay)
+                    {
+                        heavyFootstepsReadyToPlay = false;
 
-                    heavyFootstepsSound.Play();
-                    myCameraCamera.GetComponent<Animator>().Play("HeavyStep");
+                        heavyFootstepsSound.Play();
+                        myCameraCamera.GetComponent<Animator>().Play("HeavyStep");
 
-                    Invoke(nameof(HeavyFootstepCooldown), heavyFootstepsCooldown);
-                }
-                break;
+                        Invoke(nameof(HeavyFootstepCooldown), heavyFootstepsCooldown);
+                    }
+                    break;
 
-            case "Walking":
+                case "Walking":
 
-                if (normalFootstepsReadyToPlay)
-                {
-                    normalFootstepsReadyToPlay = false;
+                    if (normalFootstepsReadyToPlay)
+                    {
+                        normalFootstepsReadyToPlay = false;
 
-                    normalFootstepsSound.Play();
-                    myCameraCamera.GetComponent<Animator>().Play("NormalStep");
+                        normalFootstepsSound.Play();
+                        myCameraCamera.GetComponent<Animator>().Play("NormalStep");
 
-                    Invoke(nameof(NormalFootstepCooldown), normalFootstepsCooldown);
-                }
-                break;
-        }
+                        Invoke(nameof(NormalFootstepCooldown), normalFootstepsCooldown);
+                    }
+                    break;
+            }
 
         if (hasJumped && !jumpSound.isPlaying)
         {
@@ -536,10 +615,16 @@ public class Player : MonoBehaviour
             myCameraCamera.GetComponent<Animator>().Play("Jump");
         }
 
-        if (hasLanded && !landingSound.isPlaying && !jumpSound.isPlaying)
+        if (hasGrounded && !groundingSound.isPlaying && !jumpSound.isPlaying)
         {
-            landingSound.Play();
-            myCameraCamera.GetComponent<Animator>().Play("Landing");
+            groundingSound.Play();
+            myCameraCamera.GetComponent<Animator>().Play("Grounding");
+        }
+
+        if (hasTouchedCeiling)
+        {
+            ceilingTouchSound.Play();
+            myCameraCamera.GetComponent<Animator>().Play("CeilingTouch");
         }
     }
 
@@ -572,7 +657,7 @@ public class Player : MonoBehaviour
     {
         heavyFootstepsReadyToPlay = true;
     }
-    
+
     private void HeavyBreathingCooldown()
     {
         heavyBreathingReadyToPlay = true;

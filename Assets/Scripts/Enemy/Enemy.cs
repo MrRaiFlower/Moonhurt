@@ -12,7 +12,10 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent myNavMeshAgent;
 
     [Header("Raycast")]
-    public string playerMaskName;
+    public string playerLayerName;
+
+    [Header("Giant Hollow Tube Sector")]
+    public float giantHollowTubeSectorChance;
 
     [Header("Nav Mesh Agent Parameters")]
     public float startSpeed;
@@ -88,27 +91,27 @@ public class Enemy : MonoBehaviour
 
         if (playerDirectionAngle <= (fOV / 2))
         {
-            for (float dv = 0.5f * (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight); dv >= -1.5f * (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight); dv -= 2f / (float)(verticalRays - 1))
+            for (float dv = player.GetComponent<Player>().normalHeight * 0.25f * (player.GetComponent<Player>().myCharacterController.height / player.GetComponent<Player>().normalHeight); dv >= player.GetComponent<Player>().normalHeight * -0.75f * (player.GetComponent<Player>().myCharacterController.height / player.GetComponent<Player>().normalHeight); dv -= player.GetComponent<Player>().normalHeight / (float)(verticalRays - 1))
             {
-                for (float dh = -0.5f; dh <= 0.5f; dh +=1f / (float)(horizontalRays - 1))
+                for (float dh = -0.5f; dh <= 0.5f; dh += 1f / (float)(horizontalRays - 1))
                 {
-                    if (Physics.Raycast(this.gameObject.transform.position + (Vector3.up * 1.5f), playerDirection + new Vector3(dh, dv - ((2f - (player.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh), out raycastHitInfo, visionRange))
+                    if (Physics.Raycast(this.gameObject.transform.position + (Vector3.up * 1.5f), playerDirection + new Vector3(dh, dv - ((player.GetComponent<Player>().normalHeight - (player.GetComponent<Player>().myCharacterController.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh), out raycastHitInfo, visionRange))
                     {
-                        seesPlayer = raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(playerMaskName);
+                        seesPlayer = raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(playerLayerName);
 
-                        // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (layer.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
+                        // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((player.GetComponent<Player>().normalHeight - (player.GetComponent<Player>().myCharacterController.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
 
                         if (seesPlayer)
                         {
-                            // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((2f - (layer.GetComponent<Player>().myCapsuleCollider.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
-                            
+                            // Debug.DrawRay(this.gameObject.transform.position + (Vector3.up * 1.5f), (playerDirection + new Vector3(dh, dv - ((player.GetComponent<Player>().normalHeight - (layer.GetComponent<Player>().myCharacterController.height / player.GetComponent<Player>().normalHeight * 2f)) / 2f), dh)).normalized * raycastHitInfo.distance, Color.green);
+
                             goto skipLaterRaycast;
                         }
                     }
                 }
             }
         }
-        
+
         skipLaterRaycast:
 
         // State Control
@@ -124,7 +127,7 @@ public class Enemy : MonoBehaviour
             Invoke(nameof(ResetRunning), runningMemoryTime);
         }
 
-        // Destination Control
+        // Wandering Destination Control
 
         if (state == "Wandering" && myNavMeshAgent.remainingDistance <= catchDistance)
         {
@@ -176,7 +179,7 @@ public class Enemy : MonoBehaviour
         switch (player.GetComponent<Player>().state)
         {
             case "Crouching":
-            
+
                 if (distanceToPlayer <= crouchSoundRange)
                 {
                     myNavMeshAgent.SetDestination(player.transform.position);
@@ -225,7 +228,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player.GetComponent<Player>().hasLanded && distanceToPlayer <= landingSoundRange)
+        if (player.GetComponent<Player>().hasGrounded && distanceToPlayer <= landingSoundRange)
         {
             myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -234,7 +237,7 @@ public class Enemy : MonoBehaviour
                 state = "Walking";
             }
         }
-        
+
         if (distanceToPlayer <= runDistance && state == "Walking")
         {
             state = "Running";
