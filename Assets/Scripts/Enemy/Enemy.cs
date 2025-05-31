@@ -14,9 +14,6 @@ public class Enemy : MonoBehaviour
     [Header("Raycast")]
     public string playerLayerName;
 
-    [Header("Giant Hollow Tube Sector")]
-    public float giantHollowTubeSectorChance;
-
     [Header("Nav Mesh Agent Parameters")]
     public float startSpeed;
     public float angularSpeed;
@@ -40,7 +37,8 @@ public class Enemy : MonoBehaviour
     public float crouchSoundRange;
     public float runDistance;
     public float jumpSoundRange;
-    public float landingSoundRange;
+    public float groundingSoundRange;
+    public float doorInteractionSoundRange;
 
     [Header("Logic")]
     public float catchDistance;
@@ -112,9 +110,16 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        skipLaterRaycast:
+    skipLaterRaycast:
 
         // State Control
+
+        distanceToPlayer = (myTransform.position - player.transform.position).magnitude;
+
+        if (distanceToPlayer <= runDistance && state == "Walking")
+        {
+            state = "Running";
+        }
 
         if (seesPlayer)
         {
@@ -174,8 +179,6 @@ public class Enemy : MonoBehaviour
 
         // Player Hearing
 
-        distanceToPlayer = (myTransform.position - player.transform.position).magnitude;
-
         switch (player.GetComponent<Player>().state)
         {
             case "Crouching":
@@ -228,7 +231,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player.GetComponent<Player>().hasGrounded && distanceToPlayer <= landingSoundRange)
+        if (player.GetComponent<Player>().hasGrounded && distanceToPlayer <= groundingSoundRange && player.GetComponent<Player>().fallingTime > 0.12f)
         {
             myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -238,9 +241,14 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (distanceToPlayer <= runDistance && state == "Walking")
+        if (player.GetComponent<Player>().hasInteractedWithDoor && distanceToPlayer <= doorInteractionSoundRange)
         {
-            state = "Running";
+            myNavMeshAgent.SetDestination(player.transform.position);
+
+            if (state != "Running")
+            {
+                state = "Walking";
+            }
         }
     }
 
