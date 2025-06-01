@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour
     public Transform myTransform;
     public NavMeshAgent myNavMeshAgent;
 
+    [Header("Audio Sources")]
+    public AudioSource giantHollowTubeSound;
+
+    [Header("Giant Hollow Tube")]
+    public float giantHollowTubeSoundChance;
+
     [Header("Raycast")]
     public string playerLayerName;
 
@@ -49,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     // State
     private string state;
+    private string previousFrameState;
 
     // Vision
     private Vector3 playerDirection;
@@ -110,9 +117,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
-    skipLaterRaycast:
+        skipLaterRaycast:
 
-        // State Control
+        // First State Control
+
+        previousFrameState = state;
 
         distanceToPlayer = (myTransform.position - player.transform.position).magnitude;
 
@@ -142,6 +151,7 @@ public class Enemy : MonoBehaviour
         if ((state == "Walking" || state == "Running") && myNavMeshAgent.remainingDistance <= catchDistance)
         {
             state = "Wandering";
+
             myNavMeshAgent.SetDestination(wanderingPoints[Random.Range(0, wanderingPoints.Length)].transform.position);
         }
 
@@ -248,6 +258,14 @@ public class Enemy : MonoBehaviour
             if (state != "Running")
             {
                 state = "Walking";
+            }
+        }
+        
+        if (previousFrameState == "Wandering" && state == "Walking")
+        {
+            if (giantHollowTubeSoundChance >= Random.Range(0f, 1f))
+            {
+                giantHollowTubeSound.Play();
             }
         }
     }

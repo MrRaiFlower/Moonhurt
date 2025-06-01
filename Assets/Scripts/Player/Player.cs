@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public AudioSource heavyBreathingSound;
     public AudioSource flashlightTurnOnSound;
     public AudioSource flashlightTurnOffSound;
+    public AudioSource coinsPileCollectionSound;
 
     [Header("Raycast")]
     public float groundCheckRadius;
@@ -64,7 +65,9 @@ public class Player : MonoBehaviour
 
     [Header("Objects Interaction")]
     public float objectInteractionDistance;
+    public LayerMask interactableObjectsLayerMask;
     public string doorLayerName;
+    public string coinsPileLayerName;
 
     [Header("Sounds")]
     public float normalFootstepsCooldown;
@@ -525,16 +528,21 @@ public class Player : MonoBehaviour
 
         if (interactAction.WasPressedThisFrame())
         {
-            if (Physics.Raycast(myCameraGameObject.transform.position, myCameraGameObject.transform.TransformDirection(Vector3.forward), out raycastHitInfo, objectInteractionDistance))
+            if (Physics.Raycast(myCameraGameObject.transform.position, myCameraGameObject.transform.TransformDirection(Vector3.forward), out raycastHitInfo, objectInteractionDistance, interactableObjectsLayerMask, QueryTriggerInteraction.Ignore))
             {
                 if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(doorLayerName))
                 {
-                    if (raycastHitInfo.transform.gameObject.GetComponentInParent<Door>().readyToPlayAnimation)
+                    if (raycastHitInfo.transform.gameObject.GetComponentInParent<Door>().readyToChangeState)
                     {
+                        raycastHitInfo.transform.gameObject.GetComponentInParent<Door>().ChangeState();
                         hasInteractedWithDoor = true;
-                        
-                        raycastHitInfo.transform.gameObject.GetComponentInParent<Door>().Interact();
                     }
+                }
+                
+                if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(coinsPileLayerName))
+                {
+                    coinsPileCollectionSound.Play();
+                    raycastHitInfo.transform.gameObject.GetComponent<CoinsPile>().Collect();
                 }
             }
         }

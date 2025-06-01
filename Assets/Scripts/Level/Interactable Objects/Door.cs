@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Door : MonoBehaviour
 {
@@ -10,22 +11,22 @@ public class Door : MonoBehaviour
     public AudioSource doorcreakSound;
 
     // Logic
-    private bool isOpen;
-    [HideInInspector] public bool readyToPlayAnimation;
+    [HideInInspector] public bool isOpen;
+    [HideInInspector] public bool readyToChangeState;
 
     void Start()
     {
-        readyToPlayAnimation = true;
+        readyToChangeState = true;
     }
 
     void Update()
     {
-
+        
     }
 
-    public void Interact()
+    public void ChangeState()
     {
-        readyToPlayAnimation = false;
+        readyToChangeState = false;
 
         doorcreakSound.Play();
 
@@ -40,13 +41,12 @@ public class Door : MonoBehaviour
         }
 
         isOpen = !isOpen;
-        
-        Invoke(nameof(ResetAnimationCooldown), 0.5f);
-    
+
+        Invoke(nameof(ResetAnimationCooldown), 0.42f);
     }
 
     private void ResetAnimationCooldown()
     {
-        readyToPlayAnimation = true;
+        readyToChangeState = true;
     }
 }

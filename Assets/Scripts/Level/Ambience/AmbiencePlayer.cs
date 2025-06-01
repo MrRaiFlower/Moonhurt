@@ -25,7 +25,7 @@ public class AmbiencePlayer : MonoBehaviour
         {
             timeCounter = 0f;
 
-            if (randomAmbienceSoundChance >= Random.Range(0f, 1f))
+            if (randomAmbienceSoundChance >= Random.Range(0f, 1f) && !randomAmbienceSound.isPlaying)
             {
                 randomAmbienceSound.Play();
             }
