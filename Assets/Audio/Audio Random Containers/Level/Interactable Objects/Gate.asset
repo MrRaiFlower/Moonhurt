@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6339319695130777331
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: doormove3_{-6339319695130777331}
+  m_AudioClip: {fileID: 8300000, guid: 3dd9fe5277284204bafc27e7b35e21ec, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1218107272788991891
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: doormove2_{-1218107272788991891}
+  m_AudioClip: {fileID: 8300000, guid: 5ee8e7de8013a8d4cb7dd767eab2599b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6038686125443975499
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: doormove1_{6038686125443975499}
+  m_AudioClip: {fileID: 8300000, guid: e29ba8b57ea45c545a88cb63d0a2d16a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Gate
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 6038686125443975499}
+  - {fileID: -1218107272788991891}
+  - {fileID: -6339319695130777331}
+  - {fileID: 9106423501600465691}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &9106423501600465691
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: doormove4_{9106423501600465691}
+  m_AudioClip: {fileID: 8300000, guid: 13a921fe137986a43aade22dd46aaf4c, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

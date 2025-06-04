@@ -6,11 +6,14 @@ public class TasksOverlay : MonoBehaviour
 {
     [Header("Gameobject References")]
     public GameObject text;
+    public GameObject houseDoor;
+    public GameObject gate;
 
     [Header("Text Lines")]
     public TMP_Text headerLine;
     public TMP_Text task1Line;
     public TMP_Text task2Line;
+    public TMP_Text task3Line;
 
     [Header("Slide")]
     public float slideOffsetX;
@@ -69,19 +72,26 @@ public class TasksOverlay : MonoBehaviour
         }
     }
 
-    public void UpdateTask1(int moneyCollected)
+    public void UpdateTask1()
     {
-        task1Line.text = " 1. Собрать деньги (" + moneyCollected + "$ из 569$)";
+        task1Line.alpha = 0.25f;
+    }
+
+    public void UpdateTask2(int moneyCollected)
+    {
+        task2Line.text = " 2. Собрать деньги (" + moneyCollected + "$ из 569$)";
 
         if (moneyCollected == 569)
         {
-            task1Line.text = " 1. Собрать деньги (" + moneyCollected + "$ из 569$) - Выполнено";
-            task1Line.alpha = 0.25f;
+            houseDoor.GetComponent<DoubleDoorsSpecial>().isInteractable = true;
+            gate.GetComponent<DoubleDoorsSpecial>().isInteractable = true;
+
+            task2Line.alpha = 0.25f;
         }
     }
 
-    public void UpdateTask2()
+    public void UpdateTask3()
     {
-        task2Line.alpha = 0.25f;
+        task3Line.alpha = 0.25f;
     }
 }

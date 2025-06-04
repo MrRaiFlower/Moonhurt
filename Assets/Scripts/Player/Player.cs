@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     public AudioSource heavyBreathingSound;
     public AudioSource flashlightTurnOnSound;
     public AudioSource flashlightTurnOffSound;
-    public AudioSource coinsPileCollectionSound;
 
     [Header("Raycast")]
     public float groundCheckRadius;
@@ -68,6 +67,7 @@ public class Player : MonoBehaviour
     public LayerMask interactableObjectsLayerMask;
     public string doorLayerName;
     public string coinsPileLayerName;
+    public string doubleDoorsSpecialLayerName;
 
     [Header("Sounds")]
     public float normalFootstepsCooldown;
@@ -149,6 +149,8 @@ public class Player : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        cameraRotationY = 180f;
 
         myCharacterController.height = normalHeight;
         myCharacterController.center = Vector3.up * (normalHeight / 2f);
@@ -462,7 +464,7 @@ public class Player : MonoBehaviour
 
         hasJumped = false;
 
-        if (jumpAction.IsPressed() && isGrounded && canJump && stamina > 0f && !isTired)
+        if (jumpAction.IsPressed() && isGrounded && canJump && stamina > 0f && !isTired && !crouchAction.IsPressed())
         {
             hasJumped = true;
             canJump = false;
@@ -474,7 +476,7 @@ public class Player : MonoBehaviour
 
         // Height Control
 
-        if (crouchAction.IsPressed() && myCharacterController.height != crouchHeight)
+        if (crouchAction.IsPressed() && myCharacterController.height != crouchHeight && isGrounded)
         {
             lerpedHeightValue = Mathf.Lerp(myCharacterController.height, crouchHeight, Time.deltaTime * heightChangeSpeed);
 
@@ -538,11 +540,19 @@ public class Player : MonoBehaviour
                         hasInteractedWithDoor = true;
                     }
                 }
-                
+
                 if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(coinsPileLayerName))
                 {
-                    coinsPileCollectionSound.Play();
                     raycastHitInfo.transform.gameObject.GetComponent<CoinsPile>().Collect();
+                }
+                
+                if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(doubleDoorsSpecialLayerName))
+                {
+                    if (raycastHitInfo.transform.gameObject.GetComponentInParent<DoubleDoorsSpecial>().readyToChangeState && raycastHitInfo.transform.gameObject.GetComponentInParent<DoubleDoorsSpecial>().isInteractable)
+                    {
+                        raycastHitInfo.transform.gameObject.GetComponentInParent<DoubleDoorsSpecial>().ChangeState();
+                        hasInteractedWithDoor = true;
+                    }
                 }
             }
         }
