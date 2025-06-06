@@ -8,6 +8,7 @@ public class TasksOverlay : MonoBehaviour
     public GameObject tasksOverlay;
     public GameObject houseDoor;
     public GameObject gate;
+    public GameObject enemy;
 
     [Header("Text Lines")]
     public TMP_Text headerLine;
@@ -74,6 +75,8 @@ public class TasksOverlay : MonoBehaviour
 
     public void UpdateTask1()
     {
+        enemy.SetActive(true);
+
         task1Line.alpha = 0.25f;
     }
 
@@ -92,6 +95,8 @@ public class TasksOverlay : MonoBehaviour
 
     public void UpdateTask3()
     {
+        enemy.SetActive(false);
+
         task3Line.alpha = 0.25f;
     }
 }

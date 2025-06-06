@@ -19,7 +19,7 @@ public class AmbiencePlayer : MonoBehaviour
 
     void Update()
     {
-        timeCounter += Time.deltaTime;
+        timeCounter += Time.unscaledDeltaTime;
 
         if (timeCounter >= randomAmbienceSoundInterval)
         {

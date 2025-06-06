@@ -23,9 +23,27 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
+        graphicsQualitySlider.SetValueWithoutNotify(PlayerPrefs.GetInt("GraphicsQuality"));
         masterVolumeSlider.SetValueWithoutNotify(PlayerPrefs.GetInt("MasterVolume"));
         mouseSensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetInt("MouseSensitivity"));
 
+        switch ((int)graphicsQualitySlider.value)
+        {
+            case 0:
+
+                graphicsQualitySliderText.text = "Низкое";
+                break;
+
+            case 1:
+
+                graphicsQualitySliderText.text = "Среднее";
+                break;
+            
+            case 2:
+
+                graphicsQualitySliderText.text = "Высокое";
+                break;
+        }
         masterVolumeSliderText.text = ((int)masterVolumeSlider.value).ToString();
         mouseSensitivitySliderText.text = ((int)mouseSensitivitySlider.value).ToString();
     }

@@ -2568,7 +2568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &291393836
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2644,7 +2644,7 @@ MonoBehaviour:
   myTransform: {fileID: 291393837}
   myNavMeshAgent: {fileID: 291393836}
   giantHollowTubeSound: {fileID: 291393839}
-  giantHollowTubeSoundChance: 0.5
+  giantHollowTubeSoundChance: 1
   playerLayerName: Player
   startSpeed: 2
   angularSpeed: 270
@@ -6650,6 +6650,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2080a67673e782649ad9bca84030e7fc, type: 2}
+    - target: {fileID: 6211224650800694268, guid: 32538dcb6fcc4e34c94c33a1ea771bc8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c658958aa8256344dbd1701e4e5db676, type: 2}
     - target: {fileID: 6223352172265806435, guid: 32538dcb6fcc4e34c94c33a1ea771bc8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -10798,6 +10802,7 @@ MonoBehaviour:
   tasksOverlay: {fileID: 1192318929}
   houseDoor: {fileID: 1794222532}
   gate: {fileID: 1891190710}
+  enemy: {fileID: 291393835}
   headerLine: {fileID: 845391889}
   task1Line: {fileID: 993817791}
   task2Line: {fileID: 203117317}
@@ -13848,7 +13853,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4200
+      scalar: 2000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
