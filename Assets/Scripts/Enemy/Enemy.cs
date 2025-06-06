@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 public class Enemy : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour
     public float walkingSpeed;
     public float runningSpeed;
     public float stateChangeAcceleration;
-    
+
     [Header("Vision")]
     public float fOV;
     public float visionRange;
@@ -41,12 +42,12 @@ public class Enemy : MonoBehaviour
     public float walkSoundRange;
     public float sprintSoundRange;
     public float crouchSoundRange;
-    public float runDistance;
     public float jumpSoundRange;
     public float groundingSoundRange;
     public float doorInteractionSoundRange;
 
     [Header("Logic")]
+    public float runDistance;
     public float catchDistance;
     public float runningMemoryTime;
 
@@ -62,13 +63,13 @@ public class Enemy : MonoBehaviour
     private RaycastHit raycastHitInfo;
     private bool seesPlayer;
     private float playerDirectionAngle;
-    
+
     // Velocity
     private float speed;
 
     // Player Hearing
     private float distanceToPlayer;
-    
+
 
     void Start()
     {
@@ -117,7 +118,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        skipLaterRaycast:
+    skipLaterRaycast:
 
         // First State Control
 
@@ -139,6 +140,13 @@ public class Enemy : MonoBehaviour
         if (state == "Running" && !seesPlayer)
         {
             Invoke(nameof(ResetRunning), runningMemoryTime);
+        }
+
+        // Catch Player
+
+        if (distanceToPlayer <= catchDistance)
+        {
+            
         }
 
         // Wandering Destination Control
@@ -260,7 +268,9 @@ public class Enemy : MonoBehaviour
                 state = "Walking";
             }
         }
-        
+
+        // Giant Hollow Tube
+
         if (previousFrameState == "Wandering" && state == "Walking")
         {
             if (giantHollowTubeSoundChance >= Random.Range(0f, 1f))
