@@ -10,7 +10,6 @@ public class Rain : MonoBehaviour
     public float volume;
     public Vector2 houseCenter;
     public float houseRadius;
-    public float rainHearingDistance;
 
     // Volume Control
     private float centerDistance;
@@ -25,19 +24,7 @@ public class Rain : MonoBehaviour
     void Update()
     {
         centerDistance = (houseCenter - new Vector2(this.gameObject.GetComponentInParent<Transform>().position.x, this.gameObject.GetComponentInParent<Transform>().position.z)).magnitude;
-
-        if (centerDistance > houseRadius)
-        {
-            volumeFactor = 1f;
-        }
-        else if (centerDistance > houseRadius - rainHearingDistance)
-        {
-            volumeFactor = Mathf.Pow(1f - ((houseRadius - centerDistance) / rainHearingDistance), 2f);
-        }
-        else
-        {
-            volumeFactor = 0f;
-        }
+        volumeFactor = Mathf.Pow(Mathf.Clamp(centerDistance / houseRadius, 0f, 1f) / 1f, 7f);
 
         rainSound.volume = volume * volumeFactor;
     }

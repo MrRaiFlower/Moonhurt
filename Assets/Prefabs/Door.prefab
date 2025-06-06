@@ -658,7 +658,7 @@ AudioSource:
   m_GameObject: {fileID: 5034131588635149179}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7550696281065015820, guid: c437043bec8962c46a4ae5f03283ff5d, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 6418180475301049370, guid: 5e03a58b5102b4c45a66382d0603af33, type: 2}
   m_PlayOnAwake: 0
@@ -890,7 +890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5261628002650078205}
-  - component: {fileID: 3173327608166671702}
+  - component: {fileID: 503805786099036815}
   - component: {fileID: 1383732123507998762}
   - component: {fileID: 3127559403079497106}
   m_Layer: 8
@@ -915,7 +915,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5663000204490283457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &3173327608166671702
+--- !u!54 &503805786099036815
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

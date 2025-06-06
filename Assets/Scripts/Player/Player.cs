@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public int ceilingCheckRays;
 
     [Header("Camera")]
+    public float mouseSensitivity;
     public float cameraPositionY;
 
     [Header("Crouching Height")]
@@ -117,7 +118,6 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool hasInteractedWithDoor;
 
     // Camera Rotation
-    [HideInInspector] public float mouseSensitivity;
     private float cursorMovementX;
     private float cursorMovementY;
     private float cameraRotationX;
@@ -151,8 +151,6 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         cameraRotationY = 180f;
-
-        mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity") / 100f;
 
         myCharacterController.height = normalHeight;
         myCharacterController.center = Vector3.up * (normalHeight / 2f);
@@ -344,7 +342,7 @@ public class Player : MonoBehaviour
         switch (state)
         {
             case "Crouching":
-            
+
                 stamina += staminaCrouchingRegeneration * Time.deltaTime;
                 break;
 

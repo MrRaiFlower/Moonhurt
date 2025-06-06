@@ -597,15 +597,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Escape",
-                    "type": "Button",
-                    "id": "e51472e4-c69f-4d1b-910c-dfb493db1c0b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1035,17 +1026,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShowTasksOverlay",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6de00b15-f46d-41ff-bb8c-8b5f7a435623",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
