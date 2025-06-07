@@ -14,12 +14,20 @@ public class Enemy : MonoBehaviour
 
     [Header("Audio Sources")]
     public AudioSource giantHollowTubeSound;
+    public AudioSource roarSound;
 
     [Header("Giant Hollow Tube")]
     public float giantHollowTubeSoundChance;
 
+    [Header("Sound")]
+    public float roarSoundVolume;
+    public float roarSoundDifferentFloorVolumeFactor;
+    public float roarSoundVolumeChangeSpeed;
+    public float roarSoundVolumeChangeSpeedOnDeath;
+
     [Header("Raycast")]
     public string playerLayerName;
+    public string houseMiddlePieceLayerName;
 
     [Header("Nav Mesh Agent Parameters")]
     public float startSpeed;
@@ -39,6 +47,7 @@ public class Enemy : MonoBehaviour
     public int horizontalRays;
 
     [Header("Player Hearing")]
+    public float differentFloorHearingFactor;
     public float walkSoundRange;
     public float sprintSoundRange;
     public float crouchSoundRange;
@@ -57,6 +66,9 @@ public class Enemy : MonoBehaviour
     // State
     private string state;
     private string previousFrameState;
+    private float distanceToPlayer;
+    private bool isOnDifferentFloor;
+    [HideInInspector] public bool coughtPlayer;
 
     // Vision
     private Vector3 playerDirection;
@@ -68,7 +80,7 @@ public class Enemy : MonoBehaviour
     private float speed;
 
     // Player Hearing
-    private float distanceToPlayer;
+    private float actualDifferentFloorHearingFactor;
 
 
     void Start()
@@ -87,6 +99,18 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        // If Cought
+
+        if (coughtPlayer && roarSound.volume != 0f)
+        {
+            roarSound.volume = Mathf.Lerp(roarSound.volume, 0f, Time.unscaledDeltaTime * roarSoundVolumeChangeSpeedOnDeath);
+
+            if (roarSound.volume < 0f + valueCuttingTreshold)
+            {
+                roarSound.volume = 0f;
+            }
+        }
+
         // Sees Player Check
 
         playerDirection = player.transform.position - this.gameObject.transform.position;
@@ -120,6 +144,17 @@ public class Enemy : MonoBehaviour
 
     skipLaterRaycast:
 
+        // Floor Check
+
+        if (!seesPlayer)
+        {
+            isOnDifferentFloor = Physics.Raycast(this.gameObject.transform.position + Vector3.up, playerDirection, 50f, LayerMask.NameToLayer(houseMiddlePieceLayerName));
+        }
+        else
+        {
+            isOnDifferentFloor = false;
+        }
+
         // First State Control
 
         previousFrameState = state;
@@ -140,13 +175,6 @@ public class Enemy : MonoBehaviour
         if (state == "Running" && !seesPlayer)
         {
             Invoke(nameof(ResetRunning), runningMemoryTime);
-        }
-
-        // Catch Player
-
-        if (distanceToPlayer <= catchDistance)
-        {
-            
         }
 
         // Wandering Destination Control
@@ -197,11 +225,20 @@ public class Enemy : MonoBehaviour
 
         // Player Hearing
 
+        if (isOnDifferentFloor)
+        {
+            actualDifferentFloorHearingFactor = differentFloorHearingFactor;
+        }
+        else
+        {
+            actualDifferentFloorHearingFactor = 1f;
+        }
+
         switch (player.GetComponent<Player>().state)
         {
             case "Crouching":
 
-                if (distanceToPlayer <= crouchSoundRange)
+                if (distanceToPlayer <= crouchSoundRange * actualDifferentFloorHearingFactor)
                 {
                     myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -214,7 +251,7 @@ public class Enemy : MonoBehaviour
 
             case "Sprinting":
 
-                if (distanceToPlayer <= sprintSoundRange)
+                if (distanceToPlayer <= sprintSoundRange * actualDifferentFloorHearingFactor)
                 {
                     myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -227,7 +264,7 @@ public class Enemy : MonoBehaviour
 
             case "Walking":
 
-                if (distanceToPlayer <= walkSoundRange)
+                if (distanceToPlayer <= walkSoundRange * actualDifferentFloorHearingFactor)
                 {
                     myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -239,7 +276,7 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        if (player.GetComponent<Player>().hasJumped && distanceToPlayer <= jumpSoundRange)
+        if (player.GetComponent<Player>().hasJumped && distanceToPlayer <= jumpSoundRange * actualDifferentFloorHearingFactor)
         {
             myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -249,7 +286,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player.GetComponent<Player>().hasGrounded && distanceToPlayer <= groundingSoundRange && player.GetComponent<Player>().fallingTime > 0.12f)
+        if (player.GetComponent<Player>().hasGrounded && distanceToPlayer <= groundingSoundRange * actualDifferentFloorHearingFactor && player.GetComponent<Player>().fallingTime > 0.12f)
         {
             myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -259,7 +296,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player.GetComponent<Player>().hasInteractedWithDoor && distanceToPlayer <= doorInteractionSoundRange)
+        if (player.GetComponent<Player>().hasInteractedWithDoor && distanceToPlayer <= doorInteractionSoundRange * actualDifferentFloorHearingFactor)
         {
             myNavMeshAgent.SetDestination(player.transform.position);
 
@@ -277,6 +314,33 @@ public class Enemy : MonoBehaviour
             {
                 giantHollowTubeSound.Play();
             }
+        }
+
+        // Roar Sound
+
+        if (isOnDifferentFloor && roarSound.volume == roarSoundVolume * roarSoundDifferentFloorVolumeFactor)
+        {
+            roarSound.volume = Mathf.Lerp(roarSound.volume, roarSoundVolume * roarSoundDifferentFloorVolumeFactor, Time.deltaTime * roarSoundVolumeChangeSpeed);
+
+            if (roarSound.volume < (roarSoundVolume * roarSoundDifferentFloorVolumeFactor) + valueCuttingTreshold)
+            {
+                roarSound.volume = roarSoundVolume * roarSoundDifferentFloorVolumeFactor;
+            }
+        }
+
+        if (!isOnDifferentFloor && roarSound.volume == roarSoundVolume)
+        {
+            roarSound.volume = Mathf.Lerp(roarSound.volume, roarSoundVolume, Time.deltaTime * roarSoundVolumeChangeSpeed);
+
+            if (roarSound.volume > roarSoundVolume - valueCuttingTreshold)
+            {
+                roarSound.volume = roarSoundVolume;
+            }
+        }
+
+        if (!roarSound.isPlaying)
+        {
+            roarSound.Play();
         }
     }
 

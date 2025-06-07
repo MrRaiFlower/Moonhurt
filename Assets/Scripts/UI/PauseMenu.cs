@@ -7,9 +7,16 @@ public class PauseMenu : MonoBehaviour
     [Header("Gameobject References")]
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject controlsMenu;
+    public GameObject loadingOverlay;
     public GameObject tint;
+    public GameObject enemy;
+
+    [Header("Audio Sources")]
+    public AudioSource pressSound;
 
     [Header("Settings")]
+    public float pressSoundVolume;
     public float pauseMenuTintAlpha;
     public float pauseMenuTintAlphaChangeSpeed;
     public float pauseMenuMasterVolumeChangeFactor;
@@ -25,6 +32,10 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        loadingOverlay.SetActive(false);
+
+        pressSound.volume = pressSoundVolume;
 
         tint.GetComponent<UnityEngine.UI.Image>().color = new Color(0f, 0f, 0f, 0f);
 
@@ -33,9 +44,9 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (escapeAction.WasPressedThisFrame())
+        if (escapeAction.WasPressedThisFrame() && !enemy.GetComponent<Enemy>().coughtPlayer)
         {
-            if (!pauseMenu.activeSelf && !settingsMenu.activeSelf)
+            if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && !controlsMenu.activeSelf && !loadingOverlay.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -50,7 +61,12 @@ public class PauseMenu : MonoBehaviour
                 pauseMenu.SetActive(true);
                 settingsMenu.SetActive(false);
             }
-            else if (pauseMenu.activeSelf && !settingsMenu.activeSelf)
+            else if (!pauseMenu.activeSelf && controlsMenu.activeSelf)
+            {
+                pauseMenu.SetActive(true);
+                controlsMenu.SetActive(false);
+            }
+            else if (pauseMenu.activeSelf && !settingsMenu.activeSelf && !controlsMenu.activeSelf && !loadingOverlay.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -60,18 +76,20 @@ public class PauseMenu : MonoBehaviour
                 pauseMenu.SetActive(false);
             }
         }
-        
-        if ((pauseMenu.activeSelf || settingsMenu.activeSelf) && AudioListener.volume != PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor)
-        {
-            AudioListener.volume = Mathf.Lerp(AudioListener.volume, PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor, Time.unscaledDeltaTime * pauseMenuMasterVolumeChangeFactorChangeSpeed);
 
-            if (AudioListener.volume < PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor + valueCuttingTreshold)
+        pressSound.volume = pressSoundVolume * Mathf.Pow(AudioListener.volume, -1f);
+
+        if ((pauseMenu.activeSelf || settingsMenu.activeSelf || controlsMenu.activeSelf || loadingOverlay.activeSelf) && AudioListener.volume != PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor)
             {
-                AudioListener.volume = PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor;
-            }
-        }
+                AudioListener.volume = Mathf.Lerp(AudioListener.volume, PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor, Time.unscaledDeltaTime * pauseMenuMasterVolumeChangeFactorChangeSpeed);
 
-        if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && AudioListener.volume != PlayerPrefs.GetInt("MasterVolume") / 100f)
+                if (AudioListener.volume < PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor + valueCuttingTreshold)
+                {
+                    AudioListener.volume = PlayerPrefs.GetInt("MasterVolume") / 100f * pauseMenuMasterVolumeChangeFactor;
+                }
+            }
+
+        if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && !controlsMenu.activeSelf && !loadingOverlay.activeSelf && AudioListener.volume != PlayerPrefs.GetInt("MasterVolume") / 100f)
         {
             AudioListener.volume = Mathf.Lerp(AudioListener.volume, PlayerPrefs.GetInt("MasterVolume") / 100f, Time.unscaledDeltaTime * pauseMenuMasterVolumeChangeFactorChangeSpeed);
 
@@ -81,7 +99,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        if ((pauseMenu.activeSelf || settingsMenu.activeSelf) && tint.GetComponent<UnityEngine.UI.Image>().color.a != pauseMenuTintAlpha)
+        if ((pauseMenu.activeSelf || settingsMenu.activeSelf || controlsMenu.activeSelf || loadingOverlay.activeSelf) && tint.GetComponent<UnityEngine.UI.Image>().color.a != pauseMenuTintAlpha)
         {
             tint.GetComponent<UnityEngine.UI.Image>().color = new Color(0f, 0f, 0f, Mathf.Lerp(tint.GetComponent<UnityEngine.UI.Image>().color.a, pauseMenuTintAlpha, Time.unscaledDeltaTime * pauseMenuTintAlphaChangeSpeed));
 
@@ -91,7 +109,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && tint.GetComponent<UnityEngine.UI.Image>().color.a != 0f)
+        if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && !controlsMenu.activeSelf && !loadingOverlay.activeSelf && tint.GetComponent<UnityEngine.UI.Image>().color.a != 0f)
         {
             tint.GetComponent<UnityEngine.UI.Image>().color = new Color(0f, 0f, 0f, Mathf.Lerp(tint.GetComponent<UnityEngine.UI.Image>().color.a, 0f, Time.unscaledDeltaTime * pauseMenuTintAlphaChangeSpeed));
 
@@ -104,6 +122,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        ButtonPress();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -114,13 +134,38 @@ public class PauseMenu : MonoBehaviour
 
     public void Settings()
     {
+        ButtonPress();
+
         settingsMenu.SetActive(true);
+
+        pauseMenu.SetActive(false);
+    }
+
+    public void Controls()
+    {
+        ButtonPress();
+
+        controlsMenu.SetActive(true);
 
         pauseMenu.SetActive(false);
     }
 
     public void Exit()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        ButtonPress();
+
+        loadingOverlay.SetActive(true);
+
+        pauseMenu.SetActive(false);
+
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ButtonPress()
+    {
+        pressSound.Play();
     }
 }

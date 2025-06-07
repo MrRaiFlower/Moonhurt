@@ -147,11 +147,17 @@ public class Player : MonoBehaviour
     {
         // Setup
 
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         cameraRotationY = 180f;
 
+        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("GraphicsQuality"));
         mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity") / 100f;
 
         myCharacterController.height = normalHeight;
@@ -168,6 +174,7 @@ public class Player : MonoBehaviour
 
         heavyBreathingReadyToPlay = true;
 
+        flashlightIsOn = true;
         canUseFlashlight = true;
 
         heavyBreathingSound.volume = 0f;

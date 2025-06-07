@@ -73,9 +73,9 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("GraphicsQuality", (int)masterVolumeSlider.value);
         PlayerPrefs.Save();
 
-        QualitySettings.SetQualityLevel((int)graphicsQualitySlider.value);
+        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("GraphicsQuality"));
 
-        switch ((int)graphicsQualitySlider.value)
+        switch (PlayerPrefs.GetInt("GraphicsQuality"))
         {
             case 0:
 
@@ -99,9 +99,9 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("MasterVolume", (int)masterVolumeSlider.value);
         PlayerPrefs.Save();
 
-        AudioListener.volume = (int)mouseSensitivitySlider.value / 100f;
+        AudioListener.volume = PlayerPrefs.GetInt("MasterVolume") / 100f;
 
-        masterVolumeSliderText.text = ((int)masterVolumeSlider.value).ToString();
+        masterVolumeSliderText.text = PlayerPrefs.GetInt("MasterVolume").ToString();
     }
 
     public void ChangeMouseSensitivity()
@@ -111,9 +111,9 @@ public class SettingsMenu : MonoBehaviour
 
         if (type == "PauseSettingsMenu")
         {
-            player.GetComponent<Player>().mouseSensitivity = (int)mouseSensitivitySlider.value / 100f;
+            player.GetComponent<Player>().mouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity") / 100f;
         }
 
-        mouseSensitivitySliderText.text = ((int)mouseSensitivitySlider.value).ToString();
+        mouseSensitivitySliderText.text = PlayerPrefs.GetInt("MouseSensitivity").ToString();
     }
 }
