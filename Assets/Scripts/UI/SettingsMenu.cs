@@ -27,7 +27,7 @@ public class SettingsMenu : MonoBehaviour
         masterVolumeSlider.SetValueWithoutNotify(PlayerPrefs.GetInt("MasterVolume"));
         mouseSensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetInt("MouseSensitivity"));
 
-        switch ((int)graphicsQualitySlider.value)
+        switch (PlayerPrefs.GetInt("GraphicsQuality"))
         {
             case 0:
 
@@ -70,7 +70,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void ChangeGraphicsQuality()
     {
-        PlayerPrefs.SetInt("GraphicsQuality", (int)masterVolumeSlider.value);
+        PlayerPrefs.SetInt("GraphicsQuality", (int)graphicsQualitySlider.value);
         PlayerPrefs.Save();
 
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("GraphicsQuality"));

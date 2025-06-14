@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     public string doorLayerName;
     public string coinsPileLayerName;
     public string doubleDoorsSpecialLayerName;
+    public string lightSwitchLayerName;
 
     [Header("Sounds")]
     public float normalFootstepsCooldown;
@@ -318,7 +319,7 @@ public class Player : MonoBehaviour
         {
             if (isMoving)
             {
-                if (crouchAction.IsPressed())
+                if (myCharacterController.height != normalHeight)
                 {
                     state = "Crouching";
                 }
@@ -473,7 +474,7 @@ public class Player : MonoBehaviour
 
         hasJumped = false;
 
-        if (jumpAction.IsPressed() && isGrounded && canJump && stamina > 0f && !isTired && !crouchAction.IsPressed())
+        if (jumpAction.IsPressed() && isGrounded && canJump && stamina > 0f && !isTired && !crouchAction.IsPressed() && myCharacterController.height == normalHeight)
         {
             hasJumped = true;
             canJump = false;
@@ -554,7 +555,7 @@ public class Player : MonoBehaviour
                 {
                     raycastHitInfo.transform.gameObject.GetComponent<CoinsPile>().Collect();
                 }
-                
+
                 if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(doubleDoorsSpecialLayerName))
                 {
                     if (raycastHitInfo.transform.gameObject.GetComponentInParent<DoubleDoorsSpecial>().readyToChangeState && raycastHitInfo.transform.gameObject.GetComponentInParent<DoubleDoorsSpecial>().isInteractable)
@@ -563,12 +564,17 @@ public class Player : MonoBehaviour
                         hasInteractedWithDoor = true;
                     }
                 }
+
+                if (raycastHitInfo.transform.gameObject.layer == LayerMask.NameToLayer(lightSwitchLayerName))
+                {
+                    raycastHitInfo.transform.gameObject.GetComponentInParent<LightSwitch>().Switch();
+                }
             }
         }
 
         // Sound and Animation
 
-            if (hasGrounded && fallingTime > 0.12f)
+            if (hasGrounded && fallingTime > 0.24f)
             {
                 normalFootstepsReadyToPlay = false;
                 Invoke(nameof(NormalFootstepCooldown), normalFootstepsCooldown);

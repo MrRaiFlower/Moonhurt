@@ -9,6 +9,7 @@ public class TasksOverlay : MonoBehaviour
     public GameObject houseDoor;
     public GameObject gate;
     public GameObject enemy;
+    public GameObject car;
 
     [Header("Text Lines")]
     public TMP_Text headerLine;
@@ -39,6 +40,8 @@ public class TasksOverlay : MonoBehaviour
         tasksOverlay.transform.localPosition = defaultPosition + Vector3.right * slideOffsetX;
 
         showTasksOverlayAction = InputSystem.actions.FindAction("ShowTasksOverlay");
+
+        car.SetActive(false);
     }
 
     void Update()
@@ -98,5 +101,23 @@ public class TasksOverlay : MonoBehaviour
         enemy.SetActive(false);
 
         task3Line.alpha = 0.25f;
+
+        car.SetActive(true);
+
+        Invoke(nameof(UpdateTask4), 0.5f);
+    }
+
+    public void UpdateTask4()
+    {
+        task1Line.alpha = 1f;
+        task1Line.text = "4. Беги по дороге и не оборачивайся";
+
+        task2Line.alpha = 0f;
+        task3Line.alpha = 0f;
+    }
+
+    public void UpdateTask5()
+    {
+        task1Line.alpha = 0.25f;
     }
 }
