@@ -1,16 +1,29 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Intro : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Input
+    private InputAction skipAction;
+
     void Start()
     {
-        
+        skipAction = InputSystem.actions.FindAction("Skip");
+
+        Time.timeScale = 0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (skipAction.WasPressedThisFrame())
+        {
+            StartGame();
+        }
+    }
+
+    private void StartGame()
+    {
+        Time.timeScale = 1f;
+        this.gameObject.SetActive(false);
     }
 }

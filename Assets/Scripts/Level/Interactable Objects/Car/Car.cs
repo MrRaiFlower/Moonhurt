@@ -7,6 +7,7 @@ public class Car : MonoBehaviour
     public GameObject player;
     public GameObject darkTint;
     public GameObject tasks;
+    public AudioSource crushSound;
     public float speed;
 
     // Logic
@@ -14,7 +15,7 @@ public class Car : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -31,7 +32,9 @@ public class Car : MonoBehaviour
 
             tasks.GetComponent<TasksOverlay>().UpdateTask5();
 
+            crushSound.Play();
             Time.timeScale = 0f;
+
             SceneManager.LoadScene("Outro");
         }
     }

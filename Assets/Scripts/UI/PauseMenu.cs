@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject controlsMenu;
     public GameObject loadingOverlay;
     public GameObject tint;
+    public GameObject intro;
     public GameObject enemy;
 
     [Header("Audio Sources")]
@@ -44,7 +45,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (escapeAction.WasPressedThisFrame() && !enemy.GetComponent<Enemy>().coughtPlayer)
+        if (escapeAction.WasPressedThisFrame() && !enemy.GetComponent<Enemy>().coughtPlayer && !intro.activeSelf)
         {
             if (!pauseMenu.activeSelf && !settingsMenu.activeSelf && !controlsMenu.activeSelf && !loadingOverlay.activeSelf)
             {

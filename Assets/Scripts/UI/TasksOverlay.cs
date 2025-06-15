@@ -110,7 +110,7 @@ public class TasksOverlay : MonoBehaviour
     public void UpdateTask4()
     {
         task1Line.alpha = 1f;
-        task1Line.text = "4. Беги по дороге и не оборачивайся";
+        task1Line.text = "4. Беги по дороге. Не оборачивайся.";
 
         task2Line.alpha = 0f;
         task3Line.alpha = 0f;
