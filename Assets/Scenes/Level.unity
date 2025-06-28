@@ -15983,7 +15983,7 @@ MonoBehaviour:
   - {fileID: 204809612}
   - {fileID: 1383266214}
   tasksUIOverlay: {fileID: 1660014696}
-  coinsPilesNumber: 1
+  coinsPilesNumber: 8
   moneyIncrementRandomRange: 27
 --- !u!1 &1328479076
 GameObject:
