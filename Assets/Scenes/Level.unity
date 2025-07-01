@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 11952017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16, y: 0.6, z: 10}
+  m_LocalPosition: {x: -17, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1293,7 +1293,7 @@ Transform:
   m_GameObject: {fileID: 131797422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 3.9, z: -2}
+  m_LocalPosition: {x: -2, y: 3.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1345,7 +1345,7 @@ Transform:
   m_GameObject: {fileID: 157432439}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 3.9, z: -14}
+  m_LocalPosition: {x: -12, y: 3.3, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1875,11 +1875,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -1889,6 +1901,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1958,11 +1974,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -1972,6 +2000,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3313,7 +3345,7 @@ Transform:
   m_GameObject: {fileID: 264208526}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 0.6, z: -2}
+  m_LocalPosition: {x: 17, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3536,11 +3568,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -3550,6 +3594,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3651,7 +3699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &291393836
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4011,7 +4059,7 @@ Transform:
   m_GameObject: {fileID: 297910332}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 0.6, z: -2}
+  m_LocalPosition: {x: -11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5064,11 +5112,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -5078,6 +5138,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5147,11 +5211,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -5161,6 +5237,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5235,11 +5315,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -5249,6 +5341,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6944,7 +7040,7 @@ Transform:
   m_GameObject: {fileID: 638319013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 0.6, z: 10}
+  m_LocalPosition: {x: 17, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7016,11 +7112,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -7030,6 +7138,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7115,7 +7227,7 @@ Transform:
   m_GameObject: {fileID: 651421467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 3.9, z: -2}
+  m_LocalPosition: {x: 12, y: 3.3, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12995,11 +13107,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -13009,6 +13133,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13430,11 +13558,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -13444,6 +13584,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13534,7 +13678,7 @@ Transform:
   m_GameObject: {fileID: 977949525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 3.9, z: 6}
+  m_LocalPosition: {x: -8, y: 3.3, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14176,11 +14320,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -14190,6 +14346,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14366,7 +14526,7 @@ Transform:
   m_GameObject: {fileID: 1049216369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 3.9, z: -6}
+  m_LocalPosition: {x: -12.989, y: 3.3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14397,7 +14557,7 @@ Transform:
   m_GameObject: {fileID: 1054030609}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 3.9, z: -18}
+  m_LocalPosition: {x: 4, y: 3.3, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14714,7 +14874,7 @@ Transform:
   m_GameObject: {fileID: 1080566272}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14955,11 +15115,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -14969,6 +15141,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15679,7 +15855,7 @@ Transform:
   m_GameObject: {fileID: 1245686883}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 3.9, z: 6}
+  m_LocalPosition: {x: 10.951, y: 3.3, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15899,7 +16075,7 @@ Transform:
   m_GameObject: {fileID: 1317131255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 3.9, z: -15}
+  m_LocalPosition: {x: -7, y: 3.3, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16349,11 +16525,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -16365,6 +16553,10 @@ PrefabInstance:
       value: Coins Pile (15)
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -16374,7 +16566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442270838180897724, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.3
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 7442270838180897724, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16448,7 +16640,7 @@ Transform:
   m_GameObject: {fileID: 1391747592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 0.6, z: -18}
+  m_LocalPosition: {x: -12, y: 0, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16541,7 +16733,7 @@ Transform:
   m_GameObject: {fileID: 1401758324}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0.6, z: -18}
+  m_LocalPosition: {x: -9, y: 0, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17028,11 +17220,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -17042,6 +17246,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -17127,7 +17335,7 @@ Transform:
   m_GameObject: {fileID: 1445525970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0.6, z: -10}
+  m_LocalPosition: {x: -9, y: 0, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18464,11 +18672,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -18478,6 +18698,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -18754,7 +18978,7 @@ Transform:
   m_GameObject: {fileID: 1633292533}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 3.9, z: -14}
+  m_LocalPosition: {x: 12, y: 3.3, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18785,7 +19009,7 @@ Transform:
   m_GameObject: {fileID: 1643488579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0.6, z: -18}
+  m_LocalPosition: {x: 4, y: 0, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19432,7 +19656,7 @@ Transform:
   m_GameObject: {fileID: 1740932698}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: -2}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20448,11 +20672,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -21360,11 +21596,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1328321319}
     m_Modifications:
     - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174795484391324447, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255106375937398854, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249676468905531080, guid: 349cca16744e063448227bf0043cd032, type: 3}
@@ -21374,6 +21622,10 @@ PrefabInstance:
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_Name
       value: Coins Pile (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936939310925165810, guid: 349cca16744e063448227bf0043cd032, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22742,7 +22994,7 @@ Transform:
   m_GameObject: {fileID: 2116704609}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 0.6, z: -14}
+  m_LocalPosition: {x: 17, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
